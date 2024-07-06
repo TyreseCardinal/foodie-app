@@ -1,8 +1,8 @@
 <template>
   <main>
-    <div class="SignUp">
+    <div class="register">
       <h2>Sign Up</h2>
-      <form @submit.prevent="SignUp">
+      <form @submit.prevent="signup">
         <div>
           <label for="first_name">First Name:</label>
           <input type="text" v-model="first_name" required />
@@ -27,9 +27,8 @@
           <label for="image_url">Profile Image URL:</label>
           <input type="url" v-model="image_url" />
         </div>
-        <button v-on:click="SignUp" type="submit">Sign Up</button>
+        <button type="submit">Sign Up</button>
       </form>
-      <div v-if="error" class="error">{{ error }}</div>
     </div>
   </main>
 </template>
@@ -45,14 +44,13 @@ export default {
       email: '',
       username: '',
       password: '',
-      image_url: '',
-      error: null
+      image_url: ''
     };
   },
   methods: {
-    async SignUp() {
+    signup: async function () {
       try {
-        const response = await axios.post('/api/client', {
+        const response = await axios.post('http://209.38.6.175:5000/api/client', {
           first_name: this.first_name,
           last_name: this.last_name,
           email: this.email,
@@ -61,25 +59,20 @@ export default {
           image_url: this.image_url
         }, {
           headers: {
-            'x-api-key':
-            {
-              "id": 5,
-              "user_key": "NvZSG4",
-              "owner": "tyrese"
-            },
+            'x-api-key': 'NvZSG4',
           }
         });
 
-        console.log('User registered:', response.data);
+        console.log('User registered:', response);
         // Handle successful registration (e.g., redirect to login page or show success message)
       } catch (error) {
-        this.error = 'An error occurred while signing up. Please try again.';
-        console.error(error);
+        console.log(error)
       }
     }
   }
 };
 </script>
+
 
 <style scoped>
 .logo {
