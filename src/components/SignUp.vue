@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import cookies from "vue-cookies";
 import axios from 'axios';
 
 export default {
@@ -47,8 +48,9 @@ export default {
       image_url: ''
     };
   },
+
   methods: {
-    signup: async function () {
+    async signup() {
       try {
         const response = await axios.post('http://209.38.6.175:5000/api/client', {
           first_name: this.first_name,
@@ -64,15 +66,19 @@ export default {
         });
 
         console.log('User registered:', response);
-        // Handle successful registration (e.g., redirect to login page or show success message)
+        if (response.status === 201) {
+          cookies.set('token', response.data.token)
+          this.$router.push('/')
+        }
+
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
   }
-};
-</script>
+}
 
+</script>
 
 <style scoped>
 .logo {
