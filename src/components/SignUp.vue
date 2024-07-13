@@ -28,7 +28,7 @@
           <input type="url" v-model="image_url" />
         </div>
         <button type="submit">Sign Up</button>
-      </form>
+      </form>d
     </div>
   </main>
 </template>
