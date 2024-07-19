@@ -1,74 +1,79 @@
 <template>
   <main>
-    <div class="register">
-      <h2>Sign Up</h2>
+    <div class="register-container">
+      <h1>Restaurant Registration</h1>
       <form @submit.prevent="signup">
-        <div>
+        <div class="form-group">
           <label for="email">Email:</label>
-          <input type="email" v-model="email" required />
+          <input type="email" id="email" v-model="email" required />
         </div>
-        <div>
+        <div class="form-group">
           <label for="name">Name:</label>
-          <input type="text" v-model="name" required />
+          <input type="text" id="name" v-model="name" required />
         </div>
-        <div>
+        <div class="form-group">
           <label for="address">Address:</label>
-          <input type="text" v-model="address" required />
+          <input type="text" id="address" v-model="address" required />
         </div>
-        <div>
+        <div class="form-group">
           <label for="phone_number">Phone Number:</label>
-          <input type="text" v-model="phone_number" required />
+          <input type="tel" id="phone_number" v-model="phone_number" required />
         </div>
-        <div>
+        <div class="form-group">
           <label for="bio">Bio:</label>
-          <input type="text" v-model="bio" required />
+          <textarea id="bio" v-model="bio" required></textarea>
         </div>
-        <div>
+        <div class="form-group">
           <label for="city">City:</label>
-          <input type="text" v-model="city" required />
+          <input type="text" id="city" v-model="city" required />
         </div>
-        <div>
+        <div class="form-group">
           <label for="profile_url">Profile URL:</label>
-          <input type="url" v-model="profile_url" />
+          <input type="url" id="profile_url" v-model="profile_url" required />
         </div>
-        <div>
+        <div class="form-group">
           <label for="banner_url">Banner URL:</label>
-          <input type="url" v-model="banner_url" />
+          <input type="url" id="banner_url" v-model="banner_url" required />
         </div>
-        <div>
+        <div class="form-group">
           <label for="password">Password:</label>
-          <input type="password" v-model="password" required />
+          <input type="password" id="password" v-model="password" required />
         </div>
-        <button type="submit">Sign Up</button>
+        <button type="submit">Register</button>
       </form>
+    </div>
+    <div class="login-account">
+      <h3>
+        Already have an account? Login
+        <router-link to="/restaurant_login"> here</router-link>
+      </h3>
     </div>
   </main>
 </template>
 
 <script>
-import cookies from "vue-cookies";
-import axios from "axios";
+import cookies from 'vue-cookies';
+import axios from 'axios';
 
 export default {
   data() {
     return {
-      email: "email@email.com",
-      name: "",
-      address: "",
-      phone_number: "000-000-0000",
-      bio: "",
-      city: 'Calgary',
-      profile_url: 'www.google.com',
-      banner_url: 'www.google.com',
-      password: 'password'
+      email: '',
+      name: '',
+      address: '',
+      phone_number: '',
+      bio: '',
+      city: '',
+      profile_url: '',
+      banner_url: '',
+      password: ''
     };
   },
 
   methods: {
     async signup() {
       try {
-        const response
-        await axios.post('http://209.38.6.175:5000/api/restaurant'), {
+        const response = await axios.post('http://209.38.6.175:5000/api/restaurant', {
           email: this.email,
           name: this.name,
           address: this.address,
@@ -82,9 +87,9 @@ export default {
           headers: {
             'x-api-key': 'NvZSG4',
           }
-        };
+        });
 
-        console.log('User registered:', response);
+        console.log('Restaurant registered:', response);
         if (response.status === 201) {
           cookies.set('token', response.data.token)
           this.$router.push('/')
@@ -98,29 +103,67 @@ export default {
 }
 </script>
 
-
 <style scoped>
-.logo {
-  width: 150px;
+.register-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.register input {
-  width: 300px;
-  height: 40px;
-  padding-left: 20px;
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
   display: block;
-  margin-bottom: 30px;
-  margin-right: auto;
-  margin-left: auto;
-  border: 1px solid #154168;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
-.register button {
-  width: 320px;
-  height: 40px;
-  border: 1px solid #154168;
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
   background-color: #154168;
-  color: #fff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
+}
+
+button:hover {
+  background-color: #10deec;
+}
+
+main {
+  max-width: 500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid steelblue;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+
+.login-account {
+  font-size: 1rem;
+  text-align: center
 }
 </style>

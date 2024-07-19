@@ -1,7 +1,7 @@
 <template>
   <main>
     <div class="register">
-      <h2>Sign Up</h2>
+      <h2>Client Registration</h2>
       <form @submit.prevent="signup">
         <div>
           <label for="first_name">First Name:</label>
@@ -28,7 +28,13 @@
           <input type="url" v-model="image_url" />
         </div>
         <button type="submit">Sign Up</button>
-      </form>d
+      </form>
+    </div>
+    <div class="login-account">
+      <h3>
+        Already have an account? Login
+        <router-link to="/client_login"> here</router-link>
+      </h3>
     </div>
   </main>
 </template>
@@ -96,12 +102,34 @@ export default {
   border: 1px solid #154168;
 }
 
-.register button {
-  width: 320px;
-  height: 40px;
-  border: 1px solid #154168;
+button {
+  width: 100%;
+  padding: 10px;
   background-color: #154168;
-  color: #fff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
+}
+
+button:hover {
+  background-color: #10deec;
+}
+
+main {
+  max-width: 500px;
+  margin: 30px auto;
+  overflow: auto;
+  min-height: 300px;
+  border: 1px solid steelblue;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+
+.login-account {
+  font-size: 1rem;
+  text-align: center
 }
 </style>
