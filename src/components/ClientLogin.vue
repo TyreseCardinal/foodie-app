@@ -51,7 +51,7 @@ export default {
         console.log('Login Successful:', response);
         if (response.status === 201) {
           cookies.set('token', response.data.token)
-          this.$router.push('/')
+          this.$router.push('/discovery')
         }
 
       } catch (error) {

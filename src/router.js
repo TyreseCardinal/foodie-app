@@ -5,6 +5,8 @@ import RestaurantRegister from './components/RestaurantRegister.vue';
 import RestaurantLogin from './components/RestaurantLogin.vue';
 import ClientRegister from './components/ClientRegister.vue';
 import ClientLogin from './components/ClientLogin.vue';
+import HeaderVue from './components/Header.vue'
+import DiscoveryVue from './components/Discovery.vue'
 
 Vue.use(Router);
 
@@ -32,6 +34,16 @@ const routes = [
     path: '/restaurant_login',
     name: 'RestaurantLogin',
     component: RestaurantLogin,
+  },
+  {
+    path: '/header_vue',
+    name: 'HeaderVue',
+    component: HeaderVue,
+  },
+  {
+    path: '/discovery',
+    name: 'DiscoveryVue',
+    component: DiscoveryVue,
   },
 ];
 

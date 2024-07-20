@@ -50,7 +50,7 @@ export default {
         console.log('Restaurant registered:', response);
         if (response.status === 201) {
           cookies.set('token', response.data.token)
-          this.$router.push('/')
+          this.$router.push('/discovery')
         }
 
       } catch (error) {
