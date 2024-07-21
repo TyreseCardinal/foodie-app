@@ -6,7 +6,7 @@
     <h1>This is the discovery page</h1>
     <div class="restaurant-list">
       <router-link class="restaurant-card" v-for="restaurant in restaurants" :key="restaurant.restaurant_id"
-        :to="'/restaurant/' + restaurant.restaurant_id">
+        :to="'/menu/' + restaurant.restaurant_id">
         <h2>{{ restaurant.restaurant_id }}</h2>
         <h2>{{ restaurant.name }}</h2>
         <p>{{ restaurant.address }}</p>

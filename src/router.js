@@ -1,19 +1,22 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import HomePage from './components/HomePage.vue';
+import Home from './components/Home.vue';
 import RestaurantRegister from './components/RestaurantRegister.vue';
 import RestaurantLogin from './components/RestaurantLogin.vue';
 import ClientRegister from './components/ClientRegister.vue';
 import ClientLogin from './components/ClientLogin.vue';
-import HeaderVue from './components/Header.vue'
-import DiscoveryVue from './components/Discovery.vue'
+import Header from './components/Header.vue'
+import Discovery from './components/Discovery.vue'
+import Menu from './components/Menu.vue'
+import Add from './components/Add.vue'
+import Update from './components/Update.vue'
 
 Vue.use(Router);
 
 const routes = [
   {
     path: '/',
-    component: HomePage,
+    component: Home,
   },
   {
     path: '/client_register',
@@ -36,14 +39,29 @@ const routes = [
     component: RestaurantLogin,
   },
   {
-    path: '/header_vue',
-    name: 'HeaderVue',
-    component: HeaderVue,
+    path: '/header',
+    name: 'Header',
+    component: Header,
   },
   {
     path: '/discovery',
-    name: 'DiscoveryVue',
-    component: DiscoveryVue,
+    name: 'Discovery',
+    component: Discovery,
+  },
+  {
+    path: '/menu/:restaurant_id',
+    name: 'Menu',
+    component: Menu,
+  },
+  {
+    path: '/add',
+    name: 'Add',
+    component: Add,
+  },
+  {
+    path: '/update',
+    name: 'Update',
+    component: Update,
   },
 ];
 

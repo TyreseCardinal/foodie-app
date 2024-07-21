@@ -11,7 +11,7 @@
           <label for="password">Password:</label>
           <input type="password" id="password" v-model="password" required />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit">Login</button>
       </form>
     </div>
     <div>
@@ -47,7 +47,7 @@ export default {
           }
         });
 
-        console.log('Restaurant registered:', response);
+        console.log('Restaurant Login Successful:', response);
         if (response.status === 201) {
           cookies.set('token', response.data.token)
           this.$router.push('/discovery')

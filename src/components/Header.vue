@@ -1,10 +1,10 @@
 <template>
   <main>
     <div class="nav">
-      <a href="#">Home</a>
-      <a href="#">Edit Profile</a>
-      <a href="#">Delete Profile</a>
-      <a href="#"> </a>
+      <router-link to="/discovery">Discovery</router-link>
+      <router-link to="/add">Add Profile</router-link>
+      <router-link to="/update">Update Profile</router-link>
+      <a @click="logout">Logout</a>
 
     </div>
   </main>
@@ -12,7 +12,13 @@
 
 <script>
 export default {
-  name: 'HeaderVue',
+  name: 'Header',
+  methods: {
+    logout() {
+      localStorage.clear()
+      this.$router.push('/restaurant_login')
+    }
+  }
 }
 </script>
 <style scoped>
