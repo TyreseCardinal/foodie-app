@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     fetchMenuItems() {
-      const restaurantId = this.$route.params.restaurant_id; // Get the restaurant ID from the route params
+      const restaurantId = this.$route.params.restaurant_id;
       axios.get('http://209.38.6.175:5000/api/menu', {
         headers: {
           'x-api-key': 'NvZSG4',

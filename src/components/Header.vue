@@ -2,7 +2,7 @@
   <main>
     <div class="nav">
       <router-link to="/discovery">Discovery</router-link>
-      <router-link to="/add">Add Profile</router-link>
+      <router-link to="/menu/:restaurant_id">My Restaurant Menu</router-link>
       <router-link to="/update">Update Profile</router-link>
       <a @click="logout">Logout</a>
 

@@ -49,12 +49,14 @@ export default {
 
         console.log('Restaurant Login Successful:', response);
         if (response.status === 201) {
-          cookies.set('token', response.data.token)
-          this.$router.push('/discovery')
+          cookies.set('token', response.data.token);
+          cookies.set('restaurant_id', response.data.restaurant_id);
+          this.$router.push('/discovery');
         }
 
       } catch (error) {
         console.log(error);
+        alert('Login failed. Please check your credentials.');
       }
     }
   }
@@ -118,7 +120,6 @@ main {
   padding: 30px;
   border-radius: 5px;
 }
-
 
 .create-account {
   font-size: 1rem;

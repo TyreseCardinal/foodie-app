@@ -8,7 +8,6 @@ import ClientLogin from './components/ClientLogin.vue';
 import Header from './components/Header.vue'
 import Discovery from './components/Discovery.vue'
 import Menu from './components/Menu.vue'
-import Add from './components/Add.vue'
 import Update from './components/Update.vue'
 
 Vue.use(Router);
@@ -52,11 +51,6 @@ const routes = [
     path: '/menu/:restaurant_id',
     name: 'Menu',
     component: Menu,
-  },
-  {
-    path: '/add',
-    name: 'Add',
-    component: Add,
   },
   {
     path: '/update',
