@@ -9,6 +9,8 @@ import Header from './components/Header.vue'
 import Discovery from './components/Discovery.vue'
 import Menu from './components/Menu.vue'
 import Update from './components/Update.vue'
+import Cart from './components/Cart.vue'
+
 
 Vue.use(Router);
 
@@ -56,6 +58,11 @@ const routes = [
     path: '/update',
     name: 'Update',
     component: Update,
+  },
+  {
+    path: '/cart',
+    name: 'Cart',
+    component: Cart,
   },
 ];
 

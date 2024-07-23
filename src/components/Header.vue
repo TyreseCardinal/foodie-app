@@ -3,7 +3,7 @@
     <div class="nav">
       <router-link to="/discovery">Discovery</router-link>
       <router-link to="/menu/:restaurant_id">My Restaurant Menu</router-link>
-      <router-link to="/update">Update Profile</router-link>
+      <router-link to="/cart">Shopping Cart</router-link>
       <a @click="logout">Logout</a>
 
     </div>

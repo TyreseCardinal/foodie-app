@@ -20,7 +20,8 @@ import cookies from 'vue-cookies';
 export default {
   data() {
     return {
-      menuItems: []
+      menuItems: [],
+      shoppingCart: []
     };
   },
   created() {
@@ -40,16 +41,20 @@ export default {
       })
         .then(response => {
           this.menuItems = response.data;
+          console.log(this.menuItems);
         })
         .catch(error => {
           console.error("There was an error fetching the menu items:", error);
         });
     },
     addToCart(item) {
-      // Implement the add to cart functionality here
+      this.shoppingCart.push(item)
       console.log("Item added to cart:", item);
+      console.log("this shopping cart", this.shoppingCart);
+      cookies.set("cart", this.shoppingCart)
     }
   },
+
   filters: {
     currency(value) {
       return `$${parseFloat(value).toFixed(2)}`;
