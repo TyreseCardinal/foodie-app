@@ -16,7 +16,7 @@ export default {
   methods: {
     logout() {
       localStorage.clear()
-      this.$router.push('/restaurant_login')
+      this.$router.push('/')
     }
   }
 }
