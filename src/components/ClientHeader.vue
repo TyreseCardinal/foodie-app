@@ -2,7 +2,7 @@
   <main>
     <div class="nav">
       <router-link to="/discovery">Discovery</router-link>
-      <router-link to="/menu/:restaurant_id">My Restaurant Menu</router-link>
+      <router-link to="/">My Profile</router-link>
       <router-link to="/cart">Shopping Cart</router-link>
       <a @click="logout">Logout</a>
 
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'Header',
+  name: 'ClientHeader',
   methods: {
     logout() {
       localStorage.clear()
@@ -25,6 +25,8 @@ export default {
 .nav {
   background-color: #154168;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .nav a {

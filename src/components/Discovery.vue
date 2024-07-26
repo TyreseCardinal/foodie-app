@@ -1,7 +1,7 @@
 <template>
   <main>
     <div>
-      <Header></Header>
+      <ClientHeader></ClientHeader>
     </div>
     <h1>This is the discovery page</h1>
     <div class="restaurant-list">
@@ -21,11 +21,11 @@
 <script>
 import cookies from 'vue-cookies';
 import axios from 'axios';
-import Header from './Header.vue';
+import ClientHeader from './ClientHeader.vue';
 
 export default {
   components: {
-    Header
+    ClientHeader
   },
   data() {
     return {
@@ -44,8 +44,8 @@ export default {
             'Authorization': `Bearer ${cookies.get('token')}`  // Use the token from cookies
           }
         });
-        console.log(response.data);  // Log the response data to inspect the structure
-        this.restaurants = response.data;  // Store the response data in the restaurants array
+        console.log(response.data);
+        this.restaurants = response.data;
       } catch (error) {
         console.log('Error fetching restaurants:', error);
       }

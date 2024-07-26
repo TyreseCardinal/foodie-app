@@ -3,14 +3,14 @@ import Router from 'vue-router';
 import Home from './components/Home.vue';
 import RestaurantRegister from './components/RestaurantRegister.vue';
 import RestaurantLogin from './components/RestaurantLogin.vue';
+import RestaurantProfile from './components/RestaurantProfile.vue';
 import ClientRegister from './components/ClientRegister.vue';
 import ClientLogin from './components/ClientLogin.vue';
-import Header from './components/Header.vue'
-import Discovery from './components/Discovery.vue'
-import Menu from './components/Menu.vue'
-import Update from './components/Update.vue'
-import Cart from './components/Cart.vue'
-
+import ClientHeader from './components/ClientHeader.vue';
+import Discovery from './components/Discovery.vue';
+import Menu from './components/Menu.vue';
+import Cart from './components/Cart.vue';
+import EditMenu from './components/EditMenu.vue';
 
 Vue.use(Router);
 
@@ -40,9 +40,14 @@ const routes = [
     component: RestaurantLogin,
   },
   {
-    path: '/header',
-    name: 'Header',
-    component: Header,
+    path: '/restaurant_profile',
+    name: 'RestaurantProfile',
+    component: RestaurantProfile,
+  },
+  {
+    path: '/client_header',
+    name: 'ClientHeader',
+    component: ClientHeader,
   },
   {
     path: '/discovery',
@@ -55,9 +60,9 @@ const routes = [
     component: Menu,
   },
   {
-    path: '/update',
-    name: 'Update',
-    component: Update,
+    path: '/edit_menu',
+    name: 'EditMenu',
+    component: EditMenu,
   },
   {
     path: '/cart',

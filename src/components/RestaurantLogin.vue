@@ -51,7 +51,7 @@ export default {
         if (response.status === 201) {
           cookies.set('token', response.data.token);
           cookies.set('restaurant_id', response.data.restaurant_id);
-          this.$router.push('/discovery');
+          this.$router.push('./restaurant_profile');
         }
 
       } catch (error) {
