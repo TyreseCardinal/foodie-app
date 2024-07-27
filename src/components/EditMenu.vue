@@ -9,7 +9,7 @@
         <p>{{ item.price }}</p>
         <p>{{ item.id }}</p>
         <!-- Remove line 10 once finished -->
-        <button @click="removeMenuItem()">Remove from Menu</button>
+        <button @click="remove()">Remove from Menu</button>
         <button>Edit Item</button>
       </li>
     </ul>
@@ -54,16 +54,11 @@ export default {
       const restaurantToken = cookies.get('token')
       console.log(restaurantToken)
     },
-    removeMenuItem() {
-      axios.delete(`http://209.38.6.175:5000/api/menu`), {
-        headers: {
-          'x-api-key': 'NvZSG4',
-          'token': this.restaurantToken,
-        },
-        data: {
-          'menu_id': this.removeMenuItem
-        }
-      }
+    remove(id) {
+      console.log("Remove called");
+      const index = this.menuItems.findindex((item) => item.id = id);
+      console.log(index);
+      this.items.splice(index, 1);
     }
   }
 }

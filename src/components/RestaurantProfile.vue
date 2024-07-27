@@ -20,7 +20,7 @@
           <p>{{ item.description }}</p>
           <p>{{ item.price }}</p>
           <button @click="EditMenu(item)">Edit</button>
-          <button @click="removeMenuItem(item.id)">Remove</button>
+          <button @click="removeItem(item.id)">Remove</button>
         </li>
       </ul>
     </div>
@@ -74,7 +74,41 @@ export default {
         .catch(error => {
           console.error("There was an error fetching the menu items:", error);
         });
-    }
+    },
+    removeItem(id) {
+      const index = this.menuItems.findIndex((item) => item.id = id);
+      if (index !== -1) {
+        const item = this.menuItems[index];
+        let data = JSON.stringify({
+          menu_id: item.id.toString()
+        });
+
+        let config = {
+          method: 'delete',
+          maxBodyLength: Infinity,
+          url: 'http://209.38.6.175:5000/api/menu',
+          headers: {
+            'x-api-key': 'NvZSG4',
+            'token': `${cookies.get('token')}`,
+            'Content-Type': 'application/json'
+          },
+          data: data
+        };
+
+        axios.request(config)
+          .then((response) => {
+            if (response.status === 204) {
+              this.fetchMenuItems()
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
+      } else {
+        console.log('Item Not Found')
+      }
+    },
   }
 };
 </script>
