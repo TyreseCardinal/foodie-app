@@ -5,7 +5,6 @@
       <router-link to="/">My Profile</router-link>
       <router-link to="/cart">Shopping Cart</router-link>
       <a @click="logout">Logout</a>
-
     </div>
   </main>
 </template>

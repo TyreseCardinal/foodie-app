@@ -1,11 +1,10 @@
 <template>
   <main>
     <div class="nav">
-      <router-link to="/discovery">Discoverydd</router-link>
-      <router-link to="/">My Profile</router-link>
-      <router-link to="/cart">Shopping Cart</router-link>
+      <router-link to="/discovery">Discovery</router-link>
+      <router-link to="/restaurant_profile">Restaurant Profile</router-link>
+      <router-link to="/orders">Orders</router-link>
       <a @click="logout">Logout</a>
-
     </div>
   </main>
 </template>

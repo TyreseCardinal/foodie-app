@@ -76,7 +76,7 @@ export default {
       axios.get(`http://209.38.6.175:5000/api/restaurant?restaurant_id=` + restaurant_id, {
         headers: {
           'x-api-key': 'NvZSG4',
-          'Authorization': `Bearer ${cookies.get('token')}`
+          'token': `${cookies.get('token')}`
         },
       })
         .then(response => {
@@ -92,7 +92,7 @@ export default {
       axios.get(`http://209.38.6.175:5000/api/menu?restaurant_id=` + restaurant_id, {
         headers: {
           'x-api-key': 'NvZSG4',
-          'Authorization': `Bearer ${cookies.get('token')}`
+          'token': `${cookies.get('token')}`
         },
       })
         .then(response => {
@@ -106,26 +106,25 @@ export default {
     toggleEditMode() {
       this.isEditMode = !this.isEditMode;
       if (!this.isEditMode) {
-        this.restaurantInformation.forEach((restaurant) => {
-          this.saveRestaurantProfile(restaurant);
-        });
-        this.menuItems.forEach((item) => {
-          this.saveMenuItem(item);
-        });
+        this.saveRestaurantProfile();
+        this.saveMenuItem();
       }
     },
     saveRestaurantProfile(restaurant) {
-      let data = JSON.stringify({
-        email: restaurant.email,
-        name: restaurant.name,
-        address: restaurant.address,
-        phone_number: restaurant.phone_number,
-        bio: restaurant.bio,
-        city: restaurant.city,
-        profile_url: restaurant.profile_url,
-        banner_url: restaurant.banner_url,
-        password: restaurant.password,
-      });
+      const axios = require('axios');
+      let data = JSON.stringify(
+        {
+          email: restaurant.email,
+          name: restaurant.name,
+          address: restaurant.address,
+          phone_number: restaurant.phone_number,
+          bio: restaurant.bio,
+          city: restaurant.city,
+          profile_url: restaurant.profile_url,
+          banner_url: restaurant.banner_url,
+          password: restaurant.password,
+        }
+      );
 
       let config = {
         method: 'patch',
@@ -133,7 +132,7 @@ export default {
         url: 'http://209.38.6.175:5000/api/restaurant',
         headers: {
           'x-api-key': 'NvZSG4',
-          'token': `Bearer ${cookies.get('token')}`,
+          'token': `${cookies.get('token')}`,
           'Content-Type': 'application/json'
         },
         data: data
@@ -147,14 +146,20 @@ export default {
           console.log(error);
         });
     },
+
+
+
+
     saveMenuItem(item) {
-      let data = JSON.stringify({
-        menu_id: item.id,
-        description: item.description,
-        image_url: item.image_url,
-        name: item.name,
-        price: item.price,
-      });
+      let data = JSON.stringify(
+        {
+          menu_id: item.id,
+          description: item.description,
+          image_url: item.image_url,
+          name: item.name,
+          price: item.price,
+        }
+      );
 
       let config = {
         method: 'patch',
@@ -162,7 +167,7 @@ export default {
         url: 'http://209.38.6.175:5000/api/menu',
         headers: {
           'x-api-key': 'NvZSG4',
-          'token': `Bearer ${cookies.get('token')}`,
+          'token': `${cookies.get('token')}`,
           'Content-Type': 'application/json'
         },
         data: data
@@ -172,7 +177,7 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             this.fetchMenuItems();
-            this.toggleEditMode();
+            this.toggleEditMode()
           }
         })
         .catch((error) => {
@@ -193,7 +198,7 @@ export default {
           url: 'http://209.38.6.175:5000/api/menu',
           headers: {
             'x-api-key': 'NvZSG4',
-            'Authorization': `Bearer ${cookies.get('token')}`,
+            'token': `${cookies.get('token')}`,
             'Content-Type': 'application/json'
           },
           data: data

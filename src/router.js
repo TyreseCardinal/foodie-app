@@ -4,6 +4,7 @@ import Home from './components/Home.vue';
 import RestaurantRegister from './components/RestaurantRegister.vue';
 import RestaurantLogin from './components/RestaurantLogin.vue';
 import RestaurantProfile from './components/RestaurantProfile.vue';
+import RestaurantHeader from './components/RestaurantHeader.vue';
 import ClientRegister from './components/ClientRegister.vue';
 import ClientLogin from './components/ClientLogin.vue';
 import ClientHeader from './components/ClientHeader.vue';
@@ -43,6 +44,11 @@ const routes = [
     path: '/restaurant_profile',
     name: 'RestaurantProfile',
     component: RestaurantProfile,
+  },
+  {
+    path: '/restaurant_header',
+    name: 'RestaurantHeader',
+    component: RestaurantHeader,
   },
   {
     path: '/client_header',
