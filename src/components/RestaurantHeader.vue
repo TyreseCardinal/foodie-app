@@ -1,9 +1,9 @@
 <template>
   <main>
     <div class="nav">
-      <router-link to="/discovery">Discovery</router-link>
+      <router-link to="/restaurant_discovery">Discovery</router-link>
       <router-link to="/restaurant_profile">Restaurant Profile</router-link>
-      <router-link to="/orders">Orders</router-link>
+      <router-link to="/restaurant_orders">Orders</router-link>
       <a @click="logout">Logout</a>
     </div>
   </main>

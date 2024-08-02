@@ -7,22 +7,20 @@
         {{ isEditMode ? 'Save' : 'Edit' }}
       </button>
       <div v-if="isEditMode">
-        <ul v-for="restaurant in restaurantInformation" :key="restaurant.id">
+        <ul>
           <h2><input v-model="restaurant.name" placeholder="Edit Name"></h2>
           <p><input v-model="restaurant.bio" placeholder="Edit Bio"></p>
           <p><input v-model="restaurant.address" placeholder="Edit Address"></p>
           <p><input v-model="restaurant.city" placeholder="Edit City"></p>
-          <p><input v-model="restaurant.phone_number" placeholder="Edit Phone Number"></p>
           <p><input v-model="restaurant.email" placeholder="Edit Email"></p>
         </ul>
       </div>
       <div v-else>
-        <ul v-for="restaurant in restaurantInformation" :key="restaurant.id">
+        <ul>
           <h2>{{ restaurant.name }}</h2>
           <p>{{ restaurant.bio }}</p>
           <p>{{ restaurant.address }}</p>
           <p>{{ restaurant.city }}</p>
-          <p>{{ restaurant.phone_number }}</p>
           <p>{{ restaurant.email }}</p>
         </ul>
       </div>
@@ -36,7 +34,7 @@
             <h3><input v-model="item.name" placeholder="Edit Item Name"></h3>
             <p><input v-model="item.description" placeholder="Edit Item Description"></p>
             <p><input v-model="item.price" placeholder="Edit Item Price"></p>
-            <button @click="saveMenuItem(item)">Save Item</button>
+            <button @click="() => saveMenuItem(item)">Save Item</button>
           </div>
           <div v-else>
             <h3>{{ item.name }}</h3>
@@ -61,7 +59,7 @@ export default {
   },
   data() {
     return {
-      restaurantInformation: [],
+      restaurant: {},
       menuItems: [],
       isEditMode: false,
     };
@@ -76,12 +74,12 @@ export default {
       axios.get(`http://209.38.6.175:5000/api/restaurant?restaurant_id=` + restaurant_id, {
         headers: {
           'x-api-key': 'NvZSG4',
-          'Authorization': `Bearer ${cookies.get('token')}`
+          'Authorization': `${cookies.get('token')}`
         },
       })
         .then(response => {
-          this.restaurantInformation = response.data;
-          console.log(this.restaurantInformation);
+          this.restaurant = response.data[0];
+          console.log(this.restaurant);
         })
         .catch(error => {
           console.error("There was an error fetching the restaurant profile:", error);
@@ -106,12 +104,7 @@ export default {
     toggleEditMode() {
       this.isEditMode = !this.isEditMode;
       if (!this.isEditMode) {
-        this.restaurantInformation.forEach((restaurant) => {
-          this.saveRestaurantProfile(restaurant);
-        });
-        this.menuItems.forEach((item) => {
-          this.saveMenuItem(item);
-        });
+        this.saveRestaurantProfile(this.restaurant)
       }
     },
     saveRestaurantProfile(restaurant) {
@@ -119,7 +112,6 @@ export default {
         email: restaurant.email,
         name: restaurant.name,
         address: restaurant.address,
-        phone_number: restaurant.phone_number,
         bio: restaurant.bio,
         city: restaurant.city,
         profile_url: restaurant.profile_url,
@@ -133,7 +125,7 @@ export default {
         url: 'http://209.38.6.175:5000/api/restaurant',
         headers: {
           'x-api-key': 'NvZSG4',
-          'token': `Bearer ${cookies.get('token')}`,
+          'token': `${cookies.get('token')}`,
           'Content-Type': 'application/json'
         },
         data: data
@@ -162,7 +154,7 @@ export default {
         url: 'http://209.38.6.175:5000/api/menu',
         headers: {
           'x-api-key': 'NvZSG4',
-          'token': `Bearer ${cookies.get('token')}`,
+          'token': `${cookies.get('token')}`,
           'Content-Type': 'application/json'
         },
         data: data
@@ -193,7 +185,7 @@ export default {
           url: 'http://209.38.6.175:5000/api/menu',
           headers: {
             'x-api-key': 'NvZSG4',
-            'Authorization': `Bearer ${cookies.get('token')}`,
+            'token': `${cookies.get('token')}`,
             'Content-Type': 'application/json'
           },
           data: data
@@ -218,8 +210,25 @@ export default {
 </script>
 
 <style scoped>
+/* CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
 .profile {
   display: grid;
+  padding: 20px;
 }
 
 .profile p {
@@ -248,9 +257,7 @@ export default {
 
 .menu-item {
   background-color: #154168;
-  /* Primary color */
   color: #fff;
-  /* Secondary color */
   padding: 16px;
   text-align: center;
   border-radius: 8px;

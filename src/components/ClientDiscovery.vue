@@ -25,11 +25,11 @@ import ClientHeader from './ClientHeader.vue';
 
 export default {
   components: {
-    ClientHeader
+    ClientHeader,
   },
   data() {
     return {
-      restaurants: []  // This is the data property to store the restaurant data
+      restaurants: [],  // This is the data property to store the restaurant data
     };
   },
   created() {
