@@ -74,17 +74,17 @@ export default {
       axios.get(`http://209.38.6.175:5000/api/restaurant?restaurant_id=` + restaurant_id, {
         headers: {
           'x-api-key': 'NvZSG4',
-          'Authorization': `${cookies.get('token')}`
+          'token': `${cookies.get('token')}`
         },
       })
         .then(response => {
           this.restaurant = response.data[0];
-          console.log(this.restaurant);
         })
         .catch(error => {
           console.error("There was an error fetching the restaurant profile:", error);
         });
     },
+
     fetchMenuItems() {
       const restaurant_id = cookies.get("restaurant_id");
       axios.get(`http://209.38.6.175:5000/api/menu?restaurant_id=` + restaurant_id, {
@@ -101,12 +101,14 @@ export default {
           console.error("There was an error fetching the menu items:", error);
         });
     },
+
     toggleEditMode() {
       this.isEditMode = !this.isEditMode;
       if (!this.isEditMode) {
         this.saveRestaurantProfile(this.restaurant)
       }
     },
+
     saveRestaurantProfile(restaurant) {
       let data = JSON.stringify({
         email: restaurant.email,
@@ -139,6 +141,7 @@ export default {
           console.log(error);
         });
     },
+
     saveMenuItem(item) {
       let data = JSON.stringify({
         menu_id: item.id,
@@ -147,7 +150,6 @@ export default {
         name: item.name,
         price: item.price,
       });
-
       let config = {
         method: 'patch',
         maxBodyLength: Infinity,
@@ -159,7 +161,6 @@ export default {
         },
         data: data
       };
-
       axios.request(config)
         .then((response) => {
           if (response.status === 200) {
@@ -171,6 +172,7 @@ export default {
           console.log(error);
         });
     },
+
     removeItem(id) {
       const index = this.menuItems.findIndex((item) => item.id === id);
       if (index !== -1) {

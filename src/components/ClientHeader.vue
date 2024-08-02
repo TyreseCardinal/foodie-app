@@ -1,9 +1,10 @@
 <template>
   <main>
     <div class="nav">
-      <router-link to="/discovery">Discovery</router-link>
-      <router-link to="/">My Profile</router-link>
-      <router-link to="/cart">Shopping Cart</router-link>
+      <router-link to="/client_discovery">Discovery</router-link>
+      <router-link to="/client_profile">Profile</router-link>
+      <router-link to="/cart">Cart</router-link>
+      <router-link to="/client_orders">Orders</router-link> <!-- New Button -->
       <a @click="logout">Logout</a>
     </div>
   </main>
@@ -20,12 +21,14 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .nav {
   background-color: #154168;
   overflow: hidden;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+  /* Updated to accommodate new button */
 }
 
 .nav a {

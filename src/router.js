@@ -10,6 +10,7 @@ import ClientRegister from './components/ClientRegister.vue';
 import ClientLogin from './components/ClientLogin.vue';
 import ClientHeader from './components/ClientHeader.vue';
 import ClientProfile from './components/ClientProfile.vue';
+import ClientOrders from './components/ClientOrders.vue'
 import ClientDiscovery from './components/ClientDiscovery.vue';
 import Menu from './components/Menu.vue';
 import Cart from './components/Cart.vue';
@@ -30,6 +31,11 @@ const routes = [
     path: '/client_login',
     name: 'ClientLogin',
     component: ClientLogin,
+  },
+  {
+    path: '/client_orders',
+    name: 'ClientOrders',
+    component: ClientOrders,
   },
   {
     path: '/client_header',

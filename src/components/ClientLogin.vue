@@ -6,11 +6,11 @@
       <form @submit.prevent="clientlogin">
         <div class="form-group">
           <label for="email">Email:</label>
-          <input type="email" id="email" v-model="email" required />
+          <input type="email" id="email" autocomplete="off" v-model="email" required />
         </div>
         <div class="form-group">
           <label for="password">Password:</label>
-          <input type="password" id="password" v-model="password" required />
+          <input type="password" id="password" autocomplete="off" v-model="password" required />
         </div>
         <button type="submit">Login</button>
       </form>
@@ -51,7 +51,7 @@ export default {
         console.log('Login Successful:', response);
         if (response.status === 201) {
           cookies.set('token', response.data.token)
-          this.$router.push('/discovery')
+          this.$router.push('/client_discovery')
         }
 
       } catch (error) {

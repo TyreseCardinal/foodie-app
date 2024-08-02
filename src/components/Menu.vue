@@ -1,23 +1,30 @@
 <template>
-  <div class="menu">
-    <h1>Menu</h1>
-    <ul class="menu-grid">
-      <li v-for="item in menuItems" :key="item.id" class="menu-item">
-        <img :src="item.image_url" :alt="item.name" />
-        <h2>{{ item.name }}</h2>
-        <p>{{ item.description }}</p>
-        <p>{{ item.price | currency }}</p>
-        <button @click="addToCart(item)">Add to Cart</button>
-      </li>
-    </ul>
-  </div>
+  <main>
+    <ClientHeader></ClientHeader>
+    <div class="menu">
+      <h1>Menu</h1>
+      <ul class="menu-grid">
+        <li v-for="item in menuItems" :key="item.id" class="menu-item">
+          <img :src="item.image_url" :alt="item.name" />
+          <h2>{{ item.name }}</h2>
+          <p>{{ item.description }}</p>
+          <p>{{ item.price }}</p>
+          <button @click="addToCart(item)">Add to Cart</button>
+        </li>
+      </ul>
+    </div>
+  </main>
 </template>
 
 <script>
 import axios from 'axios';
 import cookies from 'vue-cookies';
+import ClientHeader from './ClientHeader.vue';
 
 export default {
+  components: {
+    ClientHeader
+  },
   data() {
     return {
       menuItems: [],
@@ -50,16 +57,9 @@ export default {
     addToCart(item) {
       this.shoppingCart.push(item)
       console.log("Item added to cart:", item);
-      console.log("this shopping cart", this.shoppingCart);
       cookies.set("cart", this.shoppingCart)
     }
   },
-
-  filters: {
-    currency(value) {
-      return `$${parseFloat(value).toFixed(2)}`;
-    }
-  }
 };
 </script>
 
