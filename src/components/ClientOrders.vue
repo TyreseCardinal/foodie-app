@@ -9,19 +9,13 @@
       <label for="filter-complete">Show Completed</label>
       <input type="checkbox" id="filter-complete" v-model="filters.is_complete">
     </div>
+    <button @click="createOrder" class="create-order-button">Create New Order</button>
     <ul class="orders-list">
-      <li v-for="order in groupedOrders" :key="order[0].order_id" class="order-item">
-        <h2 class="order-name">Order #{{ order[0].order_id }}</h2>
-        <div v-for="item in order" :key="item.menu_item_id" class="order-item-details">
-          <img :src="item.image_url" :alt="item.name" class="order-item-img" />
-          <div class="order-item-text">
-            <h3 class="order-item-name">{{ item.name }}</h3>
-            <p class="order-item-description">{{ item.description }}</p>
-            <p class="order-item-price">{{ item.price }}</p>
-          </div>
-        </div>
+      <li v-for="order in orders" :key="order.order_id" class="order-item">
+        <h2 class="order-name">{{ order.name }}</h2>
+        <p class="order-price">{{ order.price }}</p>
         <p class="order-status">
-          Status: {{ order[0].is_confirmed ? (order[0].is_complete ? 'Completed' : 'Confirmed') : 'Pending' }}
+          Status: {{ order.is_confirmed ? (order.is_complete ? 'Completed' : 'Confirmed') : 'Pending' }}
         </p>
       </li>
     </ul>
@@ -45,18 +39,6 @@ export default {
         is_complete: false,
       },
     };
-  },
-  computed: {
-    groupedOrders() {
-      const grouped = this.orders.reduce((acc, item) => {
-        if (!acc[item.order_id]) {
-          acc[item.order_id] = [];
-        }
-        acc[item.order_id].push(item);
-        return acc;
-      }, {});
-      return Object.values(grouped);
-    }
   },
   mounted() {
     this.fetchOrders();
@@ -83,6 +65,9 @@ export default {
           console.error("There was an error fetching orders:", error);
         });
     },
+    createOrder() {
+      this.$router.push('/client_discovery');
+    }
   },
   watch: {
     filters: {
@@ -111,10 +96,30 @@ export default {
 
 .filter {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 .filter label {
   margin-right: 10px;
+}
+
+.create-order-button {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #154168;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-order-button:hover {
+  background-color: #0d2a4d;
 }
 
 .orders-list {
@@ -138,36 +143,8 @@ export default {
   color: #154168;
 }
 
-.order-item-details {
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.order-item-img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 4px;
-  margin-right: 15px;
-}
-
-.order-item-text {
-  flex: 1;
-}
-
-.order-item-name {
-  margin: 0;
+.order-price {
   font-size: 18px;
-  color: #154168;
-}
-
-.order-item-description {
-  margin: 5px 0;
-  color: #666;
-}
-
-.order-item-price {
-  font-size: 16px;
   font-weight: bold;
   color: #333;
 }

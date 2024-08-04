@@ -6,6 +6,7 @@ import RestaurantLogin from './components/RestaurantLogin.vue';
 import RestaurantProfile from './components/RestaurantProfile.vue';
 import RestaurantHeader from './components/RestaurantHeader.vue';
 import RestaurantDiscovery from './components/RestaurantDiscovery.vue';
+import RestaurantOrders from './components/RestaurantOrders.vue';
 import ClientRegister from './components/ClientRegister.vue';
 import ClientLogin from './components/ClientLogin.vue';
 import ClientHeader from './components/ClientHeader.vue';
@@ -66,6 +67,11 @@ const routes = [
     path: '/restaurant_login',
     name: 'RestaurantLogin',
     component: RestaurantLogin,
+  },
+  {
+    path: '/restaurant_orders',
+    name: 'RestaurantOrders',
+    component: RestaurantOrders,
   },
   {
     path: '/restaurant_profile',
