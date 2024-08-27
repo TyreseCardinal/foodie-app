@@ -40,15 +40,14 @@ export default {
       try {
         const response = await axios.post('http://209.38.6.175:5000/api/restaurant-login', {
           email: this.email,
-          password: this.password
-        }, {
+          password: this.password,
           headers: {
             'x-api-key': 'NvZSG4',
           }
         });
 
-        console.log('Restaurant Login Successful:', response);
         if (response.status === 201) {
+          console.log('Restaurant Login Successful:', response);
           cookies.set('token', response.data.token);
           cookies.set('restaurant_id', response.data.restaurant_id);
           this.$router.push('./restaurant_profile');
